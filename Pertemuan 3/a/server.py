@@ -1,7 +1,7 @@
 import socket
 
 serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serverSocket.bind(("127.0.0.1", 12345))
+serverSocket.bind(("127.0.0.1", 5007))
 
 print("Alamat IP: 127.0.0.1")
 name = input('Masukkan Username: ')
