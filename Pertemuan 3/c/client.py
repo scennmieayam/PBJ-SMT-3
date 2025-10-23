@@ -10,7 +10,7 @@ def get_local_ip():
         return "127.0.0.1"
 
 clientSocket = socket.socket()
-#menggunakan fungsi get_local_ip() untuk mendapatkan ip otomatis       
+#menggunakan fungsi get_local_ip() untuk mendapatkan IP otomatis       
 client_ip = get_local_ip()
 #menampilkan IP client yang didapat secara otomatis
 print(f'Alamat IP Client: {client_ip}')

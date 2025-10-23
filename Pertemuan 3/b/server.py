@@ -1,15 +1,18 @@
 import socket
 
 serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serverSocket.bind(("127.0.0.1", 5007))
+#input port server secara dinamis
+server_port = int(input('Masukkan Port Server: '))
+serverSocket.bind(("127.0.0.1", server_port))
 
 print("Alamat IP: 127.0.0.1")
+print(f"Port Server: {server_port}")
 name = input('Masukkan Username: ')
 serverSocket.listen()
 
 msg, addrs = serverSocket.accept()
 print("Menerima koneksi dari ", addrs[0])
-print('Connection Established. Terkoneksi dari: ',addrs[0])
+print('Terkoneksi dari: ',addrs[0])
 
 client = (msg.recv(1024)).decode()
 print(client + ' sudah terhubung.')

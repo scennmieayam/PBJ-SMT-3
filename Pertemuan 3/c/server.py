@@ -1,9 +1,15 @@
 import socket
+from datetime import datetime
 
 serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serverSocket.bind(("127.0.0.1", 5007))
+#input port server secara dinamis
+server_port = int(input('Masukkan Port Server: '))
+serverSocket.bind(("127.0.0.1", server_port))
 
 print("Alamat IP: 127.0.0.1")
+print(f"Port Server: {server_port}")
+#menampilkan tanggal diawal
+print(f"Tanggal: {datetime.now().strftime('%Y-%m-%d')}")
 name = input('Masukkan Username: ')
 serverSocket.listen()
 
@@ -18,4 +24,6 @@ msg.send(name.encode())
 while True:
     message = msg.recv(1024)
     message = message.decode()
-    print(client, ':', message)
+    #menampilkan waktu pada setiap pesan dari client
+    current_time = datetime.now().strftime('%H:%M:%S')
+    print(f"[{current_time}] {client}: {message}")
