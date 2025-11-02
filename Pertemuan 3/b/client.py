@@ -1,6 +1,5 @@
 import socket
 
-#function untuk mendapatkan IP client secara otomatis
 def get_local_ip():
     try:
         hostname = socket.gethostname()
@@ -10,12 +9,9 @@ def get_local_ip():
         return "127.0.0.1"
 
 clientSocket = socket.socket()
-#menggunakan fungsi get_local_ip() untuk mendapatkan ip otomatis       
 client_ip = get_local_ip()
-#menampilkan IP client yang didapat secara otomatis
 print(f'Alamat IP Client: {client_ip}')
 server_host = input('Masukkan alamat IP Server: ')
-#input port server secara dinamis
 server_port = int(input('Masukkan Port Server: '))
 name = input('Masukkan username: ')
 clientSocket.connect((server_host, server_port))
