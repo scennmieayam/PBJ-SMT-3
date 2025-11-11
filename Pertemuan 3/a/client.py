@@ -13,7 +13,7 @@ client_ip = get_local_ip()
 print(f'Alamat IP Client: {client_ip}')
 server_host = input('Masukkan alamat IP Server: ')
 name = input('Masukkan username: ')
-clientSocket.connect((server_host, 5007))
+clientSocket.connect((server_host, 5005))
 
 clientSocket.send(name.encode())
 server_name = clientSocket.recv(1024)
