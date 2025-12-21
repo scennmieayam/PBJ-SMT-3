@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Admin Dashboard - Stylish Store</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <link rel="stylesheet" href="/home/css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="/home/style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,900;1,900&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    .admin-sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      width: 280px;
+      background: var(--bs-dark);
+      color: white;
+      padding: 2rem 0;
+      overflow-y: auto;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    .admin-sidebar.hidden {
+      transform: translateX(-100%);
+    }
+    .admin-content {
+      margin-left: 280px;
+      padding: 2rem;
+      min-height: 100vh;
+      background: var(--gray-color-100);
+    }
+    @media (max-width: 768px) {
+      .admin-sidebar {
+        transform: translateX(-100%);
+      }
+      .admin-sidebar.show {
+        transform: translateX(0);
+      }
+      .admin-content {
+        margin-left: 0;
+      }
+    }
+    .admin-header {
+      background: white;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .admin-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .admin-menu li {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .admin-menu a {
+      display: block;
+      padding: 1rem 2rem;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .admin-menu a:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--bs-primary);
+    }
+    .admin-menu a.active {
+      background: var(--bs-primary);
+      color: white;
+    }
+    .admin-logo {
+      padding: 0 2rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 2rem;
+    }
+    .admin-logo h2 {
+      color: white;
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .stats-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+    .stats-card h3 {
+      color: var(--bs-dark);
+      font-size: 2.5rem;
+      margin: 0.5rem 0;
+    }
+    .stats-card p {
+      color: var(--dark-gray-color);
+      margin: 0;
+    }
+    .btn-menu-toggle {
+      display: none;
+      background: var(--bs-primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .btn-menu-toggle {
+        display: block;
+      }
+    }
+    .table-responsive {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table th, table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--gray-color-200);
+    }
+    table th {
+      background: var(--gray-color-100);
+      font-weight: 600;
+      color: var(--bs-dark);
+    }
+    .btn {
+      padding: 0.5rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+    .btn-primary {
+      background: var(--bs-primary);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: var(--bs-primary-dark);
+    }
+    .btn-secondary {
+      background: var(--bs-secondary);
+      color: white;
+    }
+    .btn-danger {
+      background: #dc3545;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="admin-sidebar" id="sidebar">
+    <div class="admin-logo">
+      <h2>Stylish Admin</h2>
+    </div>
+    <ul class="admin-menu">
+      <li><a href="/admin/" class="active">Dashboard</a></li>
+      <li><a href="/admin/">Products</a></li>
+      <li><a href="/admin/">Orders</a></li>
+      <li><a href="/admin/">Customers</a></li>
+      <li><a href="/admin/">Analytics</a></li>
+      <li><a href="/admin/">Settings</a></li>
+      <li><a href="/">Back to Home</a></li>
+    </ul>
+  </div>
+
+  <div class="admin-content">
+    <div class="admin-header">
+      <div>
+        <h1 style="margin: 0; color: var(--bs-dark);">Admin Dashboard</h1>
+        <p style="margin: 0.5rem 0 0; color: var(--dark-gray-color);">Welcome back, Admin!</p>
+      </div>
+      <button class="btn-menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="stats-card">
+          <p>Total Sales</p>
+          <h3>$12,450</h3>
+          <p style="color: var(--bs-primary);">↑ 12% from last month</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stats-card">
+          <p>Total Orders</p>
+          <h3>1,234</h3>
+          <p style="color: var(--bs-primary);">↑ 8% from last month</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stats-card">
+          <p>Total Products</p>
+          <h3>456</h3>
+          <p style="color: var(--bs-primary);">Active products</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stats-card">
+          <p>Total Customers</p>
+          <h3>8,901</h3>
+          <p style="color: var(--bs-primary);">↑ 15% from last month</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mt-4">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <h3 style="margin-top: 0; color: var(--bs-dark);">Recent Orders</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#12345</td>
+                <td>John Doe</td>
+                <td>Running Shoes</td>
+                <td>$89.99</td>
+                <td><span style="color: var(--bs-primary);">Completed</span></td>
+                <td>2024-12-15</td>
+                <td><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.875rem;">View</a></td>
+              </tr>
+              <tr>
+                <td>#12344</td>
+                <td>Jane Smith</td>
+                <td>Casual Sneakers</td>
+                <td>$79.99</td>
+                <td><span style="color: #ffc107;">Pending</span></td>
+                <td>2024-12-14</td>
+                <td><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.875rem;">View</a></td>
+              </tr>
+              <tr>
+                <td>#12343</td>
+                <td>Bob Johnson</td>
+                <td>High Heels</td>
+                <td>$129.99</td>
+                <td><span style="color: var(--bs-primary);">Completed</span></td>
+                <td>2024-12-13</td>
+                <td><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.875rem;">View</a></td>
+              </tr>
+              <tr>
+                <td>#12342</td>
+                <td>Alice Brown</td>
+                <td>Sports Shoes</td>
+                <td>$99.99</td>
+                <td><span style="color: #dc3545;">Cancelled</span></td>
+                <td>2024-12-12</td>
+                <td><a href="#" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.875rem;">View</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mt-4">
+      <div class="col-md-6">
+        <div class="stats-card">
+          <h3 style="margin-top: 0; color: var(--bs-dark);">Quick Actions</h3>
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <a href="#" class="btn btn-primary">Add New Product</a>
+            <a href="#" class="btn btn-secondary">View All Orders</a>
+            <a href="#" class="btn btn-secondary">Manage Customers</a>
+            <a href="#" class="btn btn-secondary">View Reports</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="stats-card">
+          <h3 style="margin-top: 0; color: var(--bs-dark);">System Status</h3>
+          <p><strong>Server:</strong> <span style="color: var(--bs-primary);">Online</span></p>
+          <p><strong>Database:</strong> <span style="color: var(--bs-primary);">Connected</span></p>
+          <p><strong>Last Backup:</strong> 2024-12-15 10:30 AM</p>
+          <p><strong>Uptime:</strong> 99.9%</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/home/js/jquery-1.11.0.min.js"></script>
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('show');
+    }
+  </script>
+</body>
+
+</html>
